@@ -1,6 +1,13 @@
 import { useState } from 'react';
+import type { ChangeEvent } from 'react';
 
-const options = [
+type Option = {
+    value: string;
+    label: string;
+    description: string;
+  };
+
+const options: Option[] = [
     { value: "apple", label: "Apple", description: "A red or green fruit." },
     {
       value: "banana",
@@ -11,9 +18,9 @@ const options = [
   ];
 
 const DynamicDropdown = () => {
-    const [selected, setSelected] = useState('');
+    const [selected, setSelected] = useState<string>('');
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setSelected(e.target.value);
     };
     const selectedOption = options.find(opt => opt.value === selected);
